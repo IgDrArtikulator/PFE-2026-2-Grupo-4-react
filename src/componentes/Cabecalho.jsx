@@ -2,6 +2,8 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import LinkAncora from "./LinkAncora";
 import { BotaoHamburguer } from "./MenuHamburguer";
+import SeletorTema from "./SeletorTema";
+import { useTema } from "../utils/useTema";
 
 import logoPkz from "../assets/pkz/logo-playmakerz.png";
 import logoOto from "../assets/oto/logo-one-to-one.png";
@@ -16,11 +18,11 @@ const links = [
 // Logo de cada página: no Hub aparecem as duas marcas
 const logos = {
   hub: [
-    { src: logoPkz, alt: "Playmakerz" },
-    { src: logoOto, alt: "One to One Studio" },
+    { src: logoPkz, alt: "Playmakerz", largura: 1531, altura: 354 },
+    { src: logoOto, alt: "One to One Studio", largura: 1259, altura: 423 },
   ],
-  pkz: [{ src: logoPkz, alt: "Playmakerz" }],
-  oto: [{ src: logoOto, alt: "One to One Studio" }],
+  pkz: [{ src: logoPkz, alt: "Playmakerz", largura: 1531, altura: 354 }],
+  oto: [{ src: logoOto, alt: "One to One Studio", largura: 1259, altura: 423 }],
 };
 
 // Header igual nas 3 páginas. Prop: marca ("hub", "pkz" ou "oto").
@@ -28,6 +30,7 @@ const logos = {
 // (o CSS destaca esse link). "end" no Início: só fica ativo em "/".
 function Cabecalho({ marca }) {
   const [menuAberto, setMenuAberto] = useState(false);
+  const [modo, setModo] = useTema(); // tema: "light", "dark" ou "system"
 
   // ESC fecha o menu do celular
   function teclaPressionada(evento) {
@@ -61,19 +64,32 @@ function Cabecalho({ marca }) {
     <header className="cabecalho" onKeyDown={teclaPressionada}>
       <LinkAncora className="logo" secao="inicio">
         {logos[marca].map((logo) => (
-          <img key={logo.alt} src={logo.src} alt={logo.alt} />
+          // width/height = tamanho real do arquivo (o CSS define a altura exibida)
+          <img
+            key={logo.alt}
+            src={logo.src}
+            width={logo.largura}
+            height={logo.altura}
+            alt={logo.alt}
+          />
         ))}
       </LinkAncora>
 
-      {/* Menu do computador */}
-      <nav aria-label="Navegação principal">
-        {listaDeLinks("cabecalho-links")}
-      </nav>
+      {/* Lado direito: links (computador), tema e hambúrguer (celular) */}
+      <div className="cabecalho-direita">
+        {/* Menu do computador */}
+        <nav aria-label="Navegação principal">
+          {listaDeLinks("cabecalho-links")}
+        </nav>
 
-      <BotaoHamburguer
-        aberto={menuAberto}
-        alternar={() => setMenuAberto(!menuAberto)}
-      />
+        {/* Claro / Escuro / Sistema (no celular ele fica dentro do menu) */}
+        <SeletorTema modo={modo} setModo={setModo} />
+
+        <BotaoHamburguer
+          aberto={menuAberto}
+          alternar={() => setMenuAberto(!menuAberto)}
+        />
+      </div>
 
       {/* Menu do celular: a classe "activated" (CSS) abre o menu */}
       <nav
@@ -82,6 +98,7 @@ function Cabecalho({ marca }) {
         aria-label="Navegação principal (celular)"
       >
         {listaDeLinks("nav-links-small")}
+        <SeletorTema modo={modo} setModo={setModo} />
       </nav>
     </header>
   );

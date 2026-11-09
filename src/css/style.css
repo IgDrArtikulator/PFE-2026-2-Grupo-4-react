@@ -18,6 +18,22 @@
   --cor-azul-escuro: #0e1b22;    /* fundo dos horários livres */
   --cor-azul-borda: #1f4555;     /* borda dos horários livres */
 
+  /* Cores que antes estavam fixas no meio do CSS. Viraram variáveis para
+     o tema claro poder trocar todas de uma vez (seção 9). */
+  --cor-linha: #1d1d1d;              /* linhas do header e do footer */
+  --cor-linha-forte: #2a2a2a;        /* bordas de botões, dias e campos */
+  --cor-sobre-destaque: #0b0b0b;     /* texto em cima do azul (botões, dia escolhido) */
+  --cor-destaque-hover: #a8e0ee;     /* botão azul com o mouse em cima */
+  --cor-texto-medio: #a8a8a8;        /* textos de apoio dos Planos */
+  --cor-ocupado-fundo: #1a1a1a;      /* horário ocupado */
+  --cor-ocupado-texto: #4a4a4a;
+  --cor-painel: #0f0f0f;             /* painel "Confirmar agendamento" */
+  --cor-erro: #ff8a80;               /* mensagem de erro do agendamento */
+
+  /* Tema escuro é o padrão do site: o navegador também pinta barras de
+     rolagem e campos de formulário no modo escuro */
+  color-scheme: dark;
+
   /* Fontes (carregadas pelo Google Fonts no <head> de cada página) */
   --fonte-titulo: "Archivo", Arial, sans-serif;               /* títulos pesados */
   --fonte-condensada: "Oswald", "Arial Narrow", sans-serif;   /* eyebrows e botões */
@@ -54,7 +70,9 @@ body {
   line-height: 1.5;
 }
 
-/* Imagens nunca distorcem (slide "Boas práticas com imagens") */
+/* Imagens nunca distorcem nem estouram o layout (slide "Boas práticas com imagens").
+   height: auto é o que permite usar width e height no <img>: o navegador
+   calcula a proporção antes de baixar a foto e reserva o espaço (sem salto de layout). */
 img {
   max-width: 100%;
   height: auto;
@@ -85,7 +103,7 @@ ol {
   height: 72px;
   padding: 0 var(--margem);
   background-color: var(--cor-fundo);   /* fundo sólido para o conteúdo não aparecer atrás */
-  border-bottom: 1px solid #1d1d1d;
+  border-bottom: 1px solid var(--cor-linha);
 }
 
 .logo img {
@@ -270,18 +288,18 @@ ol {
 /* Botão cheio azul: "FAZER CADASTRO" */
 .btn-primario {
   background-color: var(--cor-azul);
-  color: #0b0b0b;
+  color: var(--cor-sobre-destaque);
 }
 
 /* Botão só com contorno: "JÁ SOU ALUNO · LOGIN" */
 .btn-contorno {
   background-color: transparent;
   color: var(--cor-texto);
-  border-color: #2e2e2e;
+  border-color: var(--cor-linha-forte);
 }
 
 .btn-primario:hover {
-  background-color: #a8e0ee;
+  background-color: var(--cor-destaque-hover);
 }
 
 .btn-contorno:hover {
@@ -337,11 +355,14 @@ ol {
   background-color: var(--cor-placeholder);
 }
 
-/* object-fit: cover = a imagem preenche a caixa toda sem distorcer (corta as sobras) */
+/* object-fit: cover = a imagem preenche a caixa toda sem distorcer (corta as sobras).
+   object-position escolhe qual parte fica visível quando há corte.
+   As pessoas estão no meio das fotos, então o corte é centralizado. */
 .foto img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 /* ---------- 0.8 Footer (nav) — no final da página, depois da última seção ---------- */
@@ -354,7 +375,7 @@ ol {
   align-items: center;
   gap: 32px;
   padding: 56px var(--margem) 40px;
-  border-top: 1px solid #1d1d1d;
+  border-top: 1px solid var(--cor-linha);
 }
 
 .rodape-logo img {
@@ -408,7 +429,7 @@ ol {
 .rodape-copy {
   width: 100%;   /* ocupa a linha inteira de baixo */
   padding-top: 28px;
-  border-top: 1px solid #1d1d1d;
+  border-top: 1px solid var(--cor-linha);
   font-size: 13px;
   color: var(--cor-texto-apagado);
 }
@@ -844,7 +865,7 @@ ol {
   margin: 0 auto 48px; /* centraliza o bloco dentro do <header> */
   font-size: 20px;
   line-height: 2;
-  color: #a8a8a8;
+  color: var(--cor-texto-medio);
 }
 
 /* Botão largo "AGENDAR AULA EXPERIMENTAL" */
@@ -880,7 +901,7 @@ ol {
   align-items: center;
   flex: 0 0 64px; /* não cresce, não encolhe, 64px fixos */
   height: 64px;
-  border: 2px solid #284c58;
+  border: 2px solid var(--cor-azul-borda);
   border-radius: 50%;
   font-family: var(--fonte-titulo);
   font-weight: 800;
@@ -898,7 +919,7 @@ ol {
 
 .passo p {
   font-size: 19px;
-  color: #9a9a9a;
+  color: var(--cor-texto-medio);
   letter-spacing: 0.02em;
 }
 
@@ -1322,7 +1343,7 @@ ol {
   background-color: var(--cor-azul);
   border-radius: 50%;
   font-size: 22px;
-  color: #01012e;
+  color: var(--cor-sobre-destaque);
 }
 
 /* ----- Responsividade / Media Queries ----- */
@@ -1427,7 +1448,7 @@ ol {
   align-items: center;
   justify-content: center;
   height: 92px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--cor-linha-forte);
   border-radius: 12px;
   font-family: var(--fonte-titulo);
   color: var(--cor-texto-apagado);
@@ -1457,11 +1478,11 @@ ol {
 .dia input:checked + span {
   background-color: var(--cor-azul);
   border-color: var(--cor-azul);
-  color: #0b0b0b;
+  color: var(--cor-sobre-destaque);
 }
 
 .dia input:checked + span strong {
-  color: #0b0b0b;
+  color: var(--cor-sobre-destaque);
 }
 
 /* ----- 5.2 Cabeçalho da lista de horários ----- */
@@ -1521,9 +1542,9 @@ ol {
 }
 
 .horario-ocupado span {
-  background-color: #1a1a1a;
-  border: 1px solid #1a1a1a;
-  color: #4a4a4a;
+  background-color: var(--cor-ocupado-fundo);
+  border: 1px solid var(--cor-ocupado-fundo);
+  color: var(--cor-ocupado-texto);
   text-decoration: line-through;
 }
 
@@ -1531,7 +1552,7 @@ ol {
 .horario input:checked + span {
   background-color: var(--cor-azul);
   border-color: var(--cor-azul);
-  color: #0b0b0b;
+  color: var(--cor-sobre-destaque);
 }
 
 /* ----- 5.4 Legenda (Livre / Ocupado) ----- */
@@ -1561,7 +1582,7 @@ ol {
 }
 
 .legenda-ocupado {
-  background-color: #2a2a2a;
+  background-color: var(--cor-linha-forte);
 }
 
 /* ----- 5.5 Painel "Confirmar agendamento" ----- */
@@ -1569,8 +1590,8 @@ ol {
   scroll-margin-top: 88px;        /* a rolagem automática para abaixo do header fixo */
   position: relative;             /* âncora para o botão X (absolute) */
   padding: 48px 44px 40px;
-  background-color: #0f0f0f;
-  border-color: #262626;
+  background-color: var(--cor-painel);
+  border-color: var(--cor-linha-forte);
   border-radius: 22px;
 }
 
@@ -1601,7 +1622,7 @@ ol {
   align-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid #2e2e2e;
+  border: 1px solid var(--cor-linha-forte);
   border-radius: 50%;
   font-size: 18px;
 }
@@ -1615,7 +1636,7 @@ ol {
 .confirmar-form .campo {
   height: 60px;
   background-color: var(--cor-fundo);
-  border-color: #2a2a2a;
+  border-color: var(--cor-linha-forte);
 }
 
 /* Botão ENVIAR em largura total */
@@ -1813,7 +1834,7 @@ ol {
 
 .confirmar-status.erro {
   font-size: 16px;
-  color: #ff8a80;   /* vermelho claro: lê bem no preto e no azul-marinho */
+  color: var(--cor-erro);
 }
 
 /* Botão "Novo agendamento", depois da reserva confirmada */
@@ -1995,6 +2016,13 @@ ol {
     --hub-linha: #2a2a45;
     --hub-azul-pkz: #1f1f8f;
     --hub-ciano: #bdeff6;
+    --hub-sobre-lilas: #10103a;      /* texto em cima do lilás */
+    --hub-sobre-ciano: #0e2a30;      /* texto em cima do ciano */
+    --hub-claro: #efe9e1;            /* texto em cima de foto ou do azul PKZ: sempre claro */
+    --hub-borda: #222222;            /* linhas do footer */
+    --hub-borda-forte: #333333;      /* círculos das redes sociais */
+    --hub-separador: #444444;
+    --hub-placeholder: #161515;      /* caixa da foto antes de carregar */
     /* Mesmas fontes da One to One em todas as páginas */
     --hub-titulo: var(--fonte-condensada);
     --hub-corpo: var(--fonte-texto);
@@ -2086,7 +2114,7 @@ ol {
     font-size: 13px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #10103a;
+    color: var(--hub-sobre-lilas);
 }
 
 /* Menu hambúrguer no Hub: mesmo .hamburguer/.menu-small da seção 0.3,
@@ -2111,6 +2139,13 @@ ol {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+}
+
+/* Hero do Hub: o texto fica à esquerda, então a foto é alinhada pela direita,
+   onde estão os atletas (no celular a caixa é estreita e corta as laterais) */
+.hub-hero-foto img {
+    object-position: 70% center;
 }
 
 .hub .hub-foto {
@@ -2149,7 +2184,7 @@ ol {
     align-items: center;
     font-size: 13px;
     color: #5c5c5c;
-    background-color: #141313; /* área da foto visível enquanto não tem imagem */
+    background-color: var(--hub-placeholder); /* área da foto visível enquanto não tem imagem */
 }
 
 .hub-hero-conteudo {
@@ -2200,7 +2235,7 @@ ol {
 
 .hub-btn-lilas {
     background-color: var(--hub-lilas);
-    color: #10103a;
+    color: var(--hub-sobre-lilas);
 }
 
 /* Controles do slider (setas e tracinhos funcionam com o js/hub.js) */
@@ -2305,8 +2340,8 @@ troca o src e tira a classe (foto nova aparece) */
     justify-content: center;
     align-items: center;
     height: 328px;
-    border: 1px dashed #4a4a4a;
-    background-color: #161515;
+    border: 1px dashed var(--hub-separador);
+    background-color: var(--hub-placeholder);
     font-size: 13px;
     color: #8a8a8a;
 }
@@ -2327,12 +2362,12 @@ troca o src e tira a classe (foto nova aparece) */
 .selo-pkz {
     background-color: #14145a;
     border: 1px solid var(--hub-lilas);
-    color: var(--hub-creme);
+    color: var(--hub-claro);
 }
 
 .selo-one {
     background-color: var(--hub-ciano);
-    color: #0e2a30;
+    color: var(--hub-sobre-ciano);
 }
 
 .hub-marca-logo {
@@ -2350,12 +2385,12 @@ troca o src e tira a classe (foto nova aparece) */
 .hub-btn-pkz {
     background-color: var(--hub-azul-pkz);
     border: 1px solid var(--hub-lilas);
-    color: var(--hub-creme);
+    color: var(--hub-claro);
 }
 
 .hub-btn-one {
     background-color: var(--hub-ciano);
-    color: #0e2a30;
+    color: var(--hub-sobre-ciano);
 }
 
 /* ----- 7.5 Fotos (Veja a gente em ação) ----- */
@@ -2366,7 +2401,7 @@ troca o src e tira a classe (foto nova aparece) */
 
 /* Legenda "UM DIA DE TREINO" no canto inferior esquerdo */
 .hub-video-legenda {
-    color: var(--hub-creme);
+    color: var(--hub-claro);
     position: absolute;
     left: 20px;
     bottom: 0;
@@ -2390,7 +2425,7 @@ troca o src e tira a classe (foto nova aparece) */
 }
 
 .hub-video figcaption {
-    color: var(--hub-creme);
+    color: var(--hub-claro);
     position: absolute;
     left: 14px;
     bottom: 16px;
@@ -2418,7 +2453,7 @@ troca o src e tira a classe (foto nova aparece) */
     align-items: center;
     row-gap: 32px;
     padding: 48px var(--hub-margem) 36px;
-    border-top: 1px solid #222222;
+    border-top: 1px solid var(--hub-borda);
 }
 
 .hub-rodape-logos {
@@ -2435,7 +2470,7 @@ troca o src e tira a classe (foto nova aparece) */
 .hub-rodape-separador {
     width: 1px;
     height: 26px;
-    background-color: #444444;
+    background-color: var(--hub-separador);
 }
 
 .hub-rodape-links {
@@ -2471,7 +2506,7 @@ troca o src e tira a classe (foto nova aparece) */
     align-items: center;
     width: 40px;
     height: 40px;
-    border: 1px solid #333333;
+    border: 1px solid var(--hub-borda-forte);
     border-radius: 50%;
     font-size: 18px;
     color: var(--hub-creme);
@@ -2490,19 +2525,19 @@ troca o src e tira a classe (foto nova aparece) */
 .hub-social .social-pkz:hover {
     background-color: var(--hub-lilas);
     border-color: var(--hub-lilas);
-    color: #10103a;
+    color: var(--hub-sobre-lilas);
 }
 
 .hub-social .social-one:hover {
     background-color: var(--hub-ciano);
     border-color: var(--hub-ciano);
-    color: #0e2a30;
+    color: var(--hub-sobre-ciano);
 }
 
 .hub-rodape-copy {
     grid-column: 1 / -1; /* ocupa todas as colunas, na linha de baixo */
     padding-top: 24px;
-    border-top: 1px solid #222222;
+    border-top: 1px solid var(--hub-borda);
     font-size: 12px;
     color: #8a8a8a;
 }
@@ -2592,5 +2627,146 @@ troca o src e tira a classe (foto nova aparece) */
 
   .hub-subtitulo {
     font-size: 28px;
+  }
+}
+
+
+
+/* =====================================================================
+   9. MODO CLARO E ESCURO
+   O tema vem do atributo data-theme no <html> ("light" ou "dark"),
+   colocado pelo script do index.html (antes de a página aparecer) e
+   pelo hook useTema (src/utils/useTema.js) quando a pessoa troca.
+   O escuro é o padrão (seção 0.1): aqui o claro só troca os valores
+   das variáveis. Como as cores do site vêm de variáveis, nada mais muda.
+   ===================================================================== */
+
+/* ----- 9.1 Cores do tema claro ----- */
+:root[data-theme="light"] {
+  --cor-fundo: #f6f5f1;
+  --cor-superficie: #ffffff;
+  --cor-placeholder: #e7e6e1;
+  --cor-borda: #dcdbd5;
+  --cor-texto: #111111;
+  --cor-texto-suave: #3b3b3b;
+  --cor-texto-apagado: #6b6b6b;
+  --cor-azul: #12738b;            /* azul mais escuro: contraste no fundo claro */
+  --cor-azul-escuro: #e3f2f6;     /* fundo dos horários livres */
+  --cor-azul-borda: #9ccbd8;
+
+  --cor-linha: #e2e1db;
+  --cor-linha-forte: #d3d2cb;
+  --cor-sobre-destaque: #ffffff;
+  --cor-destaque-hover: #0d5b6e;
+  --cor-texto-medio: #555555;
+  --cor-ocupado-fundo: #ebeae5;
+  --cor-ocupado-texto: #a3a29c;
+  --cor-painel: #ffffff;
+  --cor-erro: #b3261e;
+
+  color-scheme: light;
+}
+
+/* Hub: as variáveis dele ficam na classe .hub, então o tema claro
+   também precisa trocar ali */
+:root[data-theme="light"] .hub {
+  --hub-fundo: #f6f5f1;
+  --hub-creme: #17151a;           /* títulos */
+  --hub-texto: #46424c;           /* parágrafos */
+  --hub-lilas: #4f55d6;           /* lilás mais escuro: contraste no fundo claro */
+  --hub-linha: #dcd9ea;
+  --hub-sobre-lilas: #ffffff;
+  --hub-ciano: #0f7a8c;           /* ciano mais escuro: o link "Site One to One" aparece no fundo claro */
+  --hub-sobre-ciano: #ffffff;
+  --hub-borda: #e2e1db;
+  --hub-borda-forte: #cfcdc6;
+  --hub-separador: #c9c6be;
+  --hub-placeholder: #e7e6e1;
+}
+
+/* O hero e as fotos do Hub têm texto e selos em cima da foto: eles continuam
+   com as cores do tema escuro nos dois temas, senão o texto escuro some na foto */
+:root[data-theme="light"] .hub-hero,
+:root[data-theme="light"] .hub-foto {
+  --hub-creme: #efe9e1;
+  --hub-texto: #cfc9c1;
+  --hub-lilas: #8b90f8;
+  --hub-sobre-lilas: #10103a;
+  --hub-ciano: #bdeff6;
+  --hub-sobre-ciano: #0e2a30;
+  color: var(--hub-creme); /* a cor herdada do .hub já veio escura: define de novo aqui */
+}
+
+/* ----- 9.2 Logos ----- */
+/* Os logos são PNG brancos: no fundo claro eles sumiriam.
+   brightness(0) deixa o logo inteiro preto (só no tema claro). */
+:root[data-theme="light"] .logo img,
+:root[data-theme="light"] .rodape-logo img,
+:root[data-theme="light"] .hub-marca-logo,
+:root[data-theme="light"] .hub-rodape-logos img {
+  filter: brightness(0);
+}
+
+/* ----- 9.3 Seletor de tema (Claro / Escuro / Sistema) no header ----- */
+.seletor-tema {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--cor-linha-forte);
+  border-radius: 999px;
+}
+
+.seletor-tema button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--cor-texto-apagado);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.seletor-tema button:hover {
+  color: var(--cor-texto);
+}
+
+/* Opção escolhida: aria-checked="true" (o mesmo atributo que o leitor de tela lê) */
+.seletor-tema button[aria-checked="true"] {
+  background-color: var(--cor-azul);
+  color: var(--cor-sobre-destaque);
+}
+
+.seletor-tema button:focus-visible {
+  outline: 2px solid var(--cor-azul);
+  outline-offset: 2px;
+}
+
+/* O seletor aparece em 2 lugares: no header (computador) e dentro do
+   menu hambúrguer (celular, onde não cabe ao lado dos logos) */
+.menu-small .seletor-tema {
+  display: none;
+}
+
+/* Links + seletor juntos do lado direito do header */
+.cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (max-width: 767px) {
+  .cabecalho-direita .seletor-tema {
+    display: none;
+  }
+
+  .menu-small .seletor-tema {
+    display: flex;
+    align-self: flex-start; /* do tamanho dos botões, sem esticar */
+    margin-top: 24px;
   }
 }
