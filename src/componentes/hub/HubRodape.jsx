@@ -15,9 +15,9 @@ function HubRodape() {
   return (
     <footer className="hub-rodape">
       <div className="hub-rodape-logos">
-        <img src={logoPkz} alt="Playmakerz" />
+        <img src={logoPkz} width="1531" height="354" alt="Playmakerz" loading="lazy" />
         <span className="hub-rodape-separador"></span>
-        <img src={logoOto} alt="One to One Studio" />
+        <img src={logoOto} width="1259" height="423" alt="One to One Studio" loading="lazy" />
       </div>
 
       <nav aria-label="Sites das marcas">

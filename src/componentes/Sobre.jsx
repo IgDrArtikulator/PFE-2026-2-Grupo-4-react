@@ -50,9 +50,15 @@ function Sobre({ marca }) {
           </LinkAncora>
         </article>
 
-        {/* Foto da equipe */}
+        {/* Foto da equipe: width/height reservam o espaço antes de carregar */}
         <figure className="foto sobre-foto">
-          <img src={sobre.foto} alt={sobre.alt} loading="lazy" />
+          <img
+            src={sobre.foto}
+            width="1200"
+            height="896"
+            alt={sobre.alt}
+            loading="lazy"
+          />
         </figure>
       </div>
     </section>

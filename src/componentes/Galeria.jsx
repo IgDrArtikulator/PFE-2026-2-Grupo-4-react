@@ -104,7 +104,14 @@ function Galeria({ marca }) {
               className={i === atual ? "galeria-slide ativa" : "galeria-slide"}
               aria-hidden={i !== atual}
             >
-              <img src={foto.src} alt={foto.alt} loading="lazy" />
+              {/* Todas as fotos são 928x1152: width/height reservam o espaço */}
+              <img
+                src={foto.src}
+                width="928"
+                height="1152"
+                alt={foto.alt}
+                loading="lazy"
+              />
             </figure>
           ))}
         </div>

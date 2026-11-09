@@ -21,7 +21,13 @@ function HubFotos() {
 
       {/* Foto principal */}
       <figure className="hub-foto hub-video-principal">
-        <img src={fotoPrincipal} alt="Um dia de treino no centro de treinamento" loading="lazy" />
+        <img
+          src={fotoPrincipal}
+          width="1376"
+          height="768"
+          alt="Um dia de treino no centro de treinamento"
+          loading="lazy"
+        />
         <figcaption className="hub-video-legenda">Um dia de<br />treino</figcaption>
       </figure>
 
@@ -29,7 +35,14 @@ function HubFotos() {
       <div className="hub-videos">
         {fotos.map((foto) => (
           <figure className="hub-foto hub-video" key={foto.titulo}>
-            <img src={foto.src} alt={foto.alt} loading="lazy" />
+            {/* width/height = tamanho real da foto: reservam o espaço antes de carregar */}
+            <img
+              src={foto.src}
+              width="1024"
+              height="1024"
+              alt={foto.alt}
+              loading="lazy"
+            />
             <figcaption>
               <span className="hub-video-tag">{foto.tag}</span>
               <span className="hub-video-titulo">{foto.titulo}</span>

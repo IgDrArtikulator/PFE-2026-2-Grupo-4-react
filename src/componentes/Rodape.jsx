@@ -17,6 +17,8 @@ const linksSecoes = [
 const dados = {
   pkz: {
     logo: logoPkz,
+    largura: 1531,
+    altura: 354,
     alt: "Playmakerz",
     redes: [
       { href: "https://www.instagram.com/playmakerz/", icone: "fa-brands fa-instagram", rotulo: "Instagram da Playmakerz", externo: true },
@@ -26,6 +28,8 @@ const dados = {
   },
   oto: {
     logo: logoOto,
+    largura: 1259,
+    altura: 423,
     alt: "One to One Studio",
     redes: [
       { href: "https://www.instagram.com/onetoonestudio/", icone: "fa-brands fa-instagram", rotulo: "Instagram do One to One", externo: true },
@@ -36,12 +40,12 @@ const dados = {
 
 // Footer: logo | links das seções | redes sociais | copyright
 function Rodape({ marca }) {
-  const { logo, alt, redes } = dados[marca];
+  const { logo, largura, altura, alt, redes } = dados[marca];
 
   return (
     <footer className="rodape">
       <LinkAncora className="rodape-logo" secao="inicio">
-        <img src={logo} alt={alt} />
+        <img src={logo} width={largura} height={altura} alt={alt} loading="lazy" />
       </LinkAncora>
 
       <nav aria-label="Navegação do rodapé">

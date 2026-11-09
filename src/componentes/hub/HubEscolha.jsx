@@ -24,6 +24,8 @@ function HubEscolha() {
           foto={fotoPkz}
           alt="Jovens atletas da Playmakerz em treino de agilidade"
           logo={logoPkz}
+          logoLargura={1531}
+          logoAltura={354}
           nome="Playmakerz"
           texto="Formação e alta performance para jovens atletas."
           botao="Acessar PKZ"
@@ -36,6 +38,8 @@ function HubEscolha() {
           foto={fotoOto}
           alt="Aluna do One to One treinando com kettlebell"
           logo={logoOto}
+          logoLargura={1259}
+          logoAltura={423}
           nome="One to One Studio"
           texto="Treino individualizado para adultos. Um profissional dedicado a você."
           botao="Acessar One to One"

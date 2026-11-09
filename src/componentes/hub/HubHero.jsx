@@ -41,6 +41,8 @@ function HubHero() {
         <img
           className={trocando ? "trocando" : ""}
           src={fotosHero[visivel].src}
+          width="1376"
+          height="768"
           alt={fotosHero[visivel].alt}
           fetchPriority="high"
         />
