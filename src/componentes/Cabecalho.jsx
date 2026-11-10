@@ -15,12 +15,10 @@ const links = [
   { texto: "One to One", pagina: "/one-to-one" },
 ];
 
-// Logo de cada página: no Hub aparecem as duas marcas
+// Logo de cada página. O Hub não tem logo no header: só os links e o tema
+// (as duas marcas já aparecem nos cards e no rodapé do Hub).
 const logos = {
-  hub: [
-    { src: logoPkz, alt: "Playmakerz", largura: 1531, altura: 354 },
-    { src: logoOto, alt: "One to One Studio", largura: 1259, altura: 423 },
-  ],
+  hub: [],
   pkz: [{ src: logoPkz, alt: "Playmakerz", largura: 1531, altura: 354 }],
   oto: [{ src: logoOto, alt: "One to One Studio", largura: 1259, altura: 423 }],
 };
@@ -62,18 +60,21 @@ function Cabecalho({ marca }) {
 
   return (
     <header className="cabecalho" onKeyDown={teclaPressionada}>
-      <LinkAncora className="logo" secao="inicio">
-        {logos[marca].map((logo) => (
-          // width/height = tamanho real do arquivo (o CSS define a altura exibida)
-          <img
-            key={logo.alt}
-            src={logo.src}
-            width={logo.largura}
-            height={logo.altura}
-            alt={logo.alt}
-          />
-        ))}
-      </LinkAncora>
+      {/* Logo da marca (só nas páginas PKZ e One to One) */}
+      {logos[marca].length > 0 && (
+        <LinkAncora className="logo" secao="inicio">
+          {logos[marca].map((logo) => (
+            // width/height = tamanho real do arquivo (o CSS define a altura exibida)
+            <img
+              key={logo.alt}
+              src={logo.src}
+              width={logo.largura}
+              height={logo.altura}
+              alt={logo.alt}
+            />
+          ))}
+        </LinkAncora>
+      )}
 
       {/* Lado direito: links (computador), tema e hambúrguer (celular) */}
       <div className="cabecalho-direita">
