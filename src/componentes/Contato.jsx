@@ -46,6 +46,35 @@ const canaisOto = [
   },
 ];
 
+// Canais da Fisioterapia.
+// ATENÇÃO: número, Instagram e e-mail são provisórios. Trocar pelos dados
+// reais assim que o cliente passar.
+const canaisFisio = [
+  {
+    href: "https://wa.me/5521900000000",
+    classeIcone: "icone-whatsapp",
+    icone: "fa-brands fa-whatsapp",
+    rotulo: "WhatsApp",
+    valor: "(21) 90000-0000",
+    externo: true,
+  },
+  {
+    href: "https://www.instagram.com/",
+    classeIcone: "iconeinstagram",
+    icone: "fa-brands fa-instagram",
+    rotulo: "Instagram",
+    valor: "@fisioterapia",
+    externo: true,
+  },
+  {
+    href: "mailto:fisio@exemplo.com",
+    classeIcone: "icone-email",
+    icone: "fa-regular fa-envelope",
+    rotulo: "E-mail",
+    valor: "fisio@exemplo.com",
+  },
+];
+
 // Lista de cards: o map cria um <CardContato /> para cada canal.
 // O spread {...canal} passa todos os campos do objeto como props.
 function ListaCanais({ canais, classe }) {
@@ -60,8 +89,27 @@ function ListaCanais({ canais, classe }) {
   );
 }
 
-// Seção #contato. Prop: marca ("pkz" ou "oto").
+// Seção #contato. Prop: marca ("pkz", "oto" ou "fisio").
 function Contato({ marca }) {
+  if (marca === "fisio") {
+    return (
+      <section className="pagina" id="contato">
+        <header>
+          <p className="eyebrow">Fisioterapia · Contato</p>
+          <h2 className="titulo-pagina contato-titulo">Contate-nos</h2>
+          <p className="texto-lead">
+            Agende sua avaliação pelo canal que preferir.
+            <br />
+            Respondemos em horário comercial.
+          </p>
+        </header>
+
+        {/* 3 canais lado a lado (mesmo layout da Play Makerz) */}
+        <ListaCanais canais={canaisFisio} classe="contato-grid" />
+      </section>
+    );
+  }
+
   if (marca === "pkz") {
     return (
       <section className="pagina" id="contato">

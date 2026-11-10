@@ -2772,3 +2772,22 @@ troca o src e tira a classe (foto nova aparece) */
     margin-top: 24px;
   }
 }
+
+/* =====================================================================
+   10. PÁGINA FISIOTERAPIA
+   A página reaproveita as seções Home, Sobre e Contato (mesmas classes).
+   Aqui fica só o aviso das caixas de foto que ainda não têm imagem.
+   ===================================================================== */
+
+/* Texto no meio da caixa cinza (.foto) enquanto a foto não chega */
+.foto-vazia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-family: var(--fonte-condensada);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cor-texto-apagado);
+}
