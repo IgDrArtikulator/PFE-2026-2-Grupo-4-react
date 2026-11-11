@@ -57,10 +57,12 @@ function Sobre({ marca }) {
             <p key={i}>{paragrafo}</p>
           ))}
 
-          {/* Leva para a seção "Escolha sua jornada" do Hub */}
-          <LinkAncora className="link-seta" pagina="/" secao="escolha">
-            Comparar os dois programas &rarr;
-          </LinkAncora>
+          {/* Leva para a seção "Escolha sua jornada" do Hub (não aparece na Fisioterapia) */}
+          {!sobre.semComparar && (
+            <LinkAncora className="link-seta" pagina="/" secao="escolha">
+              Comparar os dois programas &rarr;
+            </LinkAncora>
+          )}
         </article>
 
         {/* Foto da equipe: width/height reservam o espaço antes de carregar */}
