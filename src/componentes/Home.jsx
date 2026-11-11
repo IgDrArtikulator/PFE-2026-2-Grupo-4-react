@@ -54,7 +54,7 @@ function Home({ marca }) {
 
           {/* CTA único: leva direto para o agendamento da aula experimental */}
           <div className="home-botoes">
-            <LinkAncora className="btn btn-primario btn-pesado" secao="agendamento">
+            <LinkAncora className="btn btn-primario btn-pesado" secao={home.secaoBotao || "agendamento"}>
               {home.botao}
             </LinkAncora>
           </div>
