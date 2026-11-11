@@ -22,6 +22,22 @@ const dados = {
     foto: heroOto,
     alt: "Aluno fazendo agachamento com barra no estúdio One to One",
   },
+  fisio: {
+  eyebrow: "Fisioterapia · Atendimento individual",
+  titulo: "Recupere o movimento com quem entende de esporte",
+  texto:
+    "Avaliação completa, tratamento individual e acompanhamento próximo " +
+    "para você voltar a treinar sem dor.",
+  botao: "Agendar avaliação →",
+
+  // A Fisioterapia não tem agendamento: o botão leva ao Contate-nos.
+  secaoBotao: "contato",
+
+  // Ainda sem foto: aparece a caixa cinza.
+  // Troque pelo import da foto quando chegar.
+  foto: null,
+  alt: "",
+},
 };
 
 // Seção #inicio. Prop: marca ("pkz" ou "oto").
