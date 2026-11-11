@@ -26,6 +26,19 @@ const dados = {
     foto: equipeOto,
     alt: "Equipe de personal trainers do One to One no estúdio",
   },
+  fisio: {
+  eyebrow: "Fisioterapia · Sobre",
+  paragrafos: [
+    "A Fisioterapia atende atletas e alunos que estão se recuperando de " +
+      "lesões ou querem prevenir dores. Cada paciente passa por uma " +
+      "avaliação e recebe um tratamento individual.",
+    "O trabalho é feito junto com os treinadores da Play Makerz e do " +
+      "One to One, para a volta aos treinos ser segura.",
+  ],
+  semComparar: true, // Não mostra o link "Comparar os dois programas".
+  foto: null, // Ainda sem foto: aparece a caixa cinza.
+  alt: "",
+},
 };
 
 // Seção #sobre. Prop: marca ("pkz" ou "oto").
