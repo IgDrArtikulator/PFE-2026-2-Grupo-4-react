@@ -67,13 +67,15 @@ function Sobre({ marca }) {
 
         {/* Foto da equipe: width/height reservam o espaço antes de carregar */}
         <figure className="foto sobre-foto">
-          <img
-            src={sobre.foto}
-            width="1200"
-            height="896"
-            alt={sobre.alt}
-            loading="lazy"
-          />
+          {/* Sem foto (Fisioterapia, por enquanto): mostra só o aviso na caixa */}
+          {sobre.foto ? (
+            <img
+              src={sobre.foto}
+              width="1200"
+              height="896"
+              alt={sobre.alt}
+              loading="lazy"
+            />) : (<span className="foto-vazia">Foto em breve</span>)}
         </figure>
       </div>
     </section>
