@@ -63,14 +63,13 @@ function Home({ marca }) {
         {/* Foto do hero: imagem principal, sem lazy e com prioridade alta.
             width e height (tamanho real do arquivo): reservam o espaço
             antes de a foto carregar, sem salto de layout. */}
-        <figure className="foto home-foto">
-          <img
+        <figure className="foto home-foto">{/* Sem foto (Fisioterapia, por enquanto): mostra só o aviso na caixa */}
+          {home.foto ? (<img
             src={home.foto}
             width="928"
             height="1152"
             alt={home.alt}
-            fetchPriority="high"
-          />
+            fetchPriority="high"/>) : (<span className="foto-vazia">Foto em breve</span>)}
         </figure>
       </div>
     </section>
