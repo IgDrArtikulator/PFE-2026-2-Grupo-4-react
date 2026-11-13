@@ -1,4 +1,4 @@
-// Planos de cada marca (mesmos dados do js/planos.js do site Vanilla).
+// Planos de cada marca, usados pelo NossosPlanos.jsx.
 // Campos de cada plano:
 //   nome, chamada     → obrigatórios
 //   descricao, itens  → opcionais (texto e lista de serviços)

@@ -10,7 +10,7 @@ import Contato from "../componentes/Contato";
 import Agendamento from "../componentes/Agendamento";
 import Rodape from "../componentes/Rodape";
 
-// Página "/one-to-one": a ordem das seções é a mesma do one-to-one/index.html.
+// Página "/one-to-one": todas as seções da One to One, na ordem da página.
 // As cores padrão do CSS (:root) já são as da One to One.
 function OneToOne() {
   return (

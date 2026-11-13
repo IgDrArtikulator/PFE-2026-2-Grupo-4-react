@@ -12,7 +12,7 @@ const canaisPkz = [
   },
   {
     href: "https://www.instagram.com/playmakerz/",
-    classeIcone: "iconeinstagram",
+    classeIcone: "icone-instagram",
     icone: "fa-brands fa-instagram",
     rotulo: "Instagram",
     valor: "@playmakerz",
@@ -38,7 +38,7 @@ const canaisOto = [
   },
   {
     href: "https://www.instagram.com/onetoonestudio/",
-    classeIcone: "iconeinstagram",
+    classeIcone: "icone-instagram",
     icone: "fa-brands fa-instagram",
     rotulo: "Instagram",
     valor: "@onetoonestudio",
@@ -60,7 +60,7 @@ const canaisFisio = [
   },
   {
     href: "https://www.instagram.com/",
-    classeIcone: "iconeinstagram",
+    classeIcone: "icone-instagram",
     icone: "fa-brands fa-instagram",
     rotulo: "Instagram",
     valor: "@fisioterapia",

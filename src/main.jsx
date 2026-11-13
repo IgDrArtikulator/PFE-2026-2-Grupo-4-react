@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
-// CSS único do projeto (o mesmo style.css do site Vanilla, sem alterações)
+// CSS único do projeto: vale para todas as páginas
 import "./css/style.css";
 import App from "./App.jsx";
 

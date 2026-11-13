@@ -10,9 +10,8 @@ import Contato from "../componentes/Contato";
 import Agendamento from "../componentes/Agendamento";
 import Rodape from "../componentes/Rodape";
 
-// Página "/pkz": a ordem das seções é a mesma do pkz/index.html.
-// Usa o mesmo estilo da One to One (cores e fontes padrão do CSS),
-// por isso não tem mais a classe "pkz".
+// Página "/pkz": todas as seções da Playmakerz, na ordem da página.
+// Usa o mesmo estilo da One to One (cores e fontes padrão do CSS).
 function Pkz() {
   return (
     <>

@@ -1,4 +1,4 @@
-// Dados e regras do agendamento (mesma lógica do js/agendamento.js do Vanilla).
+// Dados e regras do agendamento: dias da semana e horários livres e ocupados.
 // Funções puras: recebem valores e devolvem resultados, sem mexer na tela.
 
 export const horas = [

@@ -4,8 +4,8 @@ import HubEscolha from "../componentes/hub/HubEscolha";
 import HubFotos from "../componentes/hub/HubFotos";
 import HubRodape from "../componentes/hub/HubRodape";
 
-// Página "/" (Hub). A classe "hub" no lugar do <body class="hub"> do Vanilla
-// aplica as cores e fontes próprias do Hub (CSS).
+// Página "/" (Hub). A classe "hub" aplica as cores próprias do Hub
+// (seção 7 do style.css).
 function Hub() {
   return (
     <div className="hub">

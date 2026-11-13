@@ -90,7 +90,7 @@ ol {
 }
 
 
-/* ---------- 0.3 Header (nav) — fixo no topo da One to One e da PKZ ---------- */
+/* ---------- 0.3 Header (nav) — fixo no topo de todas as páginas ---------- */
 /* position: sticky = o header rola junto até encostar no topo (top: 0)
    e fica preso ali enquanto o resto da página rola por baixo dele. */
 .cabecalho {
@@ -179,18 +179,15 @@ ol {
   display: none;
   flex-direction: column;
   padding: 24px var(--margem);
-
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  pointer-events: none;
 }
 
+/* O menu passa de display: none para flex. Uma transition não funciona
+   nessa troca (não existe "meio do caminho" entre none e flex), então a
+   entrada é uma animação com @keyframes (seção 11). Só opacity e
+   transform: as propriedades leves, que não recalculam o layout. */
 .menu-small.activated {
   display: flex;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  animation: menu-abrir 0.3s ease;
 }
 
 .nav-links-small {
@@ -283,6 +280,7 @@ ol {
   text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 /* Botão cheio azul: "FAZER CADASTRO" */
@@ -488,77 +486,6 @@ ol {
   }
 }
 
-
-/* ---------- 0.10 Tema Playmakerz ----------
-   A página pkz/index.html usa <body class="pkz">.
-   Aqui só trocamos os VALORES das variáveis: todas as classes acima
-   (botões, campos, cards, header, footer, placeholders) passam a sair
-   em azul-marinho + dourado, com a fonte Barlow.
-   Obs.: na PKZ a variável --cor-azul guarda o DOURADO (cor de destaque). */
-.pkz {
-  --cor-fundo: #01012e;          /* azul-marinho do fundo */
-  --cor-superficie: #08083f;     /* inputs e cards */
-  --cor-placeholder: #0a0a44;    /* caixas de foto/vídeo */
-  --cor-borda: #22225c;
-  --cor-texto-suave: #e8e8f2;
-  --cor-texto-apagado: #8a8ab8;
-  --cor-azul: #c9a24a;           /* dourado PKZ (destaque) */
-  --cor-azul-escuro: #0d0d55;    /* fundo dos horários livres */
-  --cor-azul-borda: #34348a;     /* borda dos horários livres */
-  --fonte-titulo: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --fonte-condensada: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --fonte-texto: "Barlow", Arial, sans-serif;
-}
-
-/* Linhas do header/footer em azul */
-.pkz .cabecalho,
-.pkz .rodape {
-  border-color: #1b1b4d;
-}
-
-/* Links do menu: condensada fina (no One to One é Archivo pesada) */
-.pkz .cabecalho-links a {
-  font-weight: 400;
-  font-size: 16px;
-}
-
-/* Menu do celular na PKZ: mesma condensada fina */
-.pkz .nav-links-small a {
-  font-weight: 400;
-}
-
-/* Títulos da PKZ são mais leves que os da One to One */
-.pkz .titulo-pagina {
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.pkz .eyebrow {
-  font-size: 13px;
-  letter-spacing: 0.35em;
-}
-
-.pkz .btn {
-  font-weight: 500;
-}
-
-.pkz .btn-primario {
-  color: #01012e;
-}
-
-.pkz .btn-primario:hover {
-  background-color: #dbb862;
-}
-
-.pkz .btn-contorno {
-  border-color: #2c2c6e;
-}
-
-.pkz .btn-pesado {
-  font-weight: 700;
-  letter-spacing: 0.15em;
-}
-
  /* ===1. HOME === */
 
 /* Coluna do texto um pouco mais larga que a da foto (3 partes x 2 partes) */
@@ -616,32 +543,9 @@ ol {
     height: 280px;
   }
 }
-
-/* ----- 1.2 Home Playmakerz ----- */
-.pkz .home-titulo {
-  font-size: 100px;
-  line-height: 1.04;
-}
-
-.pkz .home-hero .eyebrow {
-  font-size: 13px;
-}
-
-/* CTA único "AGENDAR AULA GRÁTIS →" dourado */
-.pkz .home-botoes .btn-pesado {
-  height: 60px;
-  padding: 0 40px;
-  font-size: 18px;
-}
-
-@media (max-width: 767px) {
-  .pkz .home-titulo {
-    font-size: 48px;
-  }
-}
 /* =====================================================================
    2. SOBRE + TREINOS
-   Seções #sobre e #treinos de one-to-one/index.html e pkz/index.html
+   Componentes Sobre.jsx e Treinos.jsx (páginas PKZ e One to One)
    ===================================================================== */
 
 /* ----- 2.1 Sobre nós ----- */
@@ -795,48 +699,14 @@ ol {
     padding: 32px 24px;
   }
 
-  .treino-card h2,
-  .pkz .treino-card h2 {
+  .treino-card h2 {
     font-size: 20px;
     letter-spacing: 0.02em;
   }
 }
-
-/* ----- 2.3 Sobre Playmakerz ----- */
-.pkz .sobre-titulo {
-  font-size: 88px;
-}
-
-.pkz .sobre-texto p {
-  line-height: 2.2;
-  margin-bottom: 20px;
-}
-
-.pkz .link-seta {
-  margin-top: 24px;
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 0.25em;
-}
-
-/* ----- 2.4 Treinos Playmakerz: texto logo abaixo do título ----- */
-.pkz .treino-card {
-  min-height: 300px;
-}
-
-.pkz .treino-card h2 {
-  font-weight: 600;
-  font-size: 30px;
-  letter-spacing: 0.04em;
-}
-
-.pkz .treino-card h2 + p {
-  margin-top: 0;
-  padding-top: 16px;
-}
 /* =====================================================================
    3. PLANOS + UNIDADES
-   Seções #planos e #unidades de one-to-one/index.html e pkz/index.html
+   Componentes Planos.jsx, NossosPlanos.jsx e Unidades.jsx
    ===================================================================== */
 
 /* ----- 3.1 Planos (Aula gratuita experimental) — tudo centralizado ----- */
@@ -964,7 +834,7 @@ ol {
 }
 
 
-/* ----- 3.3 Planos Playmakerz: 3 cards, o do meio em destaque ----- */
+/* ----- 3.3 Planos da PKZ: texto de apoio ----- */
 .planos-pkz-texto {
   max-width: 640px;
   margin-bottom: 56px;
@@ -1015,19 +885,6 @@ ol {
   border-color: var(--cor-azul);
 }
 
-
-/* ----- 3.4 Unidades Playmakerz ----- */
-.pkz .unidade-nome {
-  font-weight: 600;
-  font-size: 28px;
-  letter-spacing: 0.06em;
-  margin-bottom: 8px;
-}
-
-.pkz .unidade-endereco {
-  line-height: 1.75;
-}
-
 /* Tablets e celulares: um card embaixo do outro */
 @media (max-width: 1200px) {
   .planos-cards {
@@ -1047,7 +904,7 @@ ol {
   }
 }
 
-/* ----- 3.5 Nossos planos (cards criados pelo js/planos.js) ----- */
+/* ----- 3.5 Nossos planos (cards criados pelo NossosPlanos.jsx) ----- */
 .planos-lista-texto {
   max-width: 720px;
   margin-bottom: 56px;
@@ -1058,12 +915,6 @@ ol {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-}
-
-/* Playmakerz: 3 planos lado a lado */
-.pkz .planos-lista {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
 }
 
 /* Card em coluna. O gap dá o espaço entre as partes e o
@@ -1150,23 +1001,10 @@ ol {
   border-color: var(--cor-azul);
 }
 
-/* Playmakerz: nome do plano mais leve, como os outros títulos da PKZ */
-.pkz .plano-nome {
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
 /* One to One: 2 por linha em telas médias */
 @media (max-width: 1400px) {
   .planos-lista {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Playmakerz: um card embaixo do outro, igual aos outros cards da PKZ */
-@media (max-width: 1200px) {
-  .pkz .planos-lista {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -1185,7 +1023,7 @@ ol {
 }
 /* =====================================================================
    4. CONTATO
-   Seção #contato de one-to-one/index.html e pkz/index.html
+   Componentes Contato.jsx e CardContato.jsx
    ===================================================================== */
 
 /* ----- 4.1 Contate-nos ----- */
@@ -1210,10 +1048,14 @@ ol {
   align-items: center;
   gap: 24px;
   padding: 34px 40px 34px 32px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
+/* Hover: o card sobe 4px. transform não mexe no layout dos vizinhos,
+   por isso é a forma leve de animar movimento (aula de animações) */
 .contato-card:hover {
   border-color: var(--cor-azul);
+  transform: translateY(-4px);
 }
 
 .contato-icone {
@@ -1314,7 +1156,7 @@ ol {
   text-align: center;
 }
 
-/* ----- 4.3 Contato Playmakerz: 3 cards em linha ----- */
+/* ----- 4.3 Contato com 3 cards em linha (PKZ e Fisioterapia) ----- */
 .contato-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1327,18 +1169,18 @@ ol {
 }
 
 /* Cada card ocupa a altura toda do <li> da grade */
-.pkz .contato-card {
+.contato-grid .contato-card {
   height: 100%;
   padding: 44px 36px;
 }
 
 /* E-mail comprido quebra a linha em vez de sair do card */
-.pkz .contato-valor {
+.contato-grid .contato-valor {
   font-size: 24px;
   overflow-wrap: anywhere;
 }
 
-/* Ícone de e-mail: círculo dourado */
+/* Ícone de e-mail: círculo na cor de destaque */
 .icone-email {
   background-color: var(--cor-azul);
   border-radius: 50%;
@@ -1358,7 +1200,7 @@ ol {
 @media (max-width: 767px) {
   /* Cards de contato menores no celular para caber na tela */
   .contato-card,
-  .pkz .contato-card {
+  .contato-grid .contato-card {
     gap: 16px;
     padding: 24px 20px;
   }
@@ -1370,7 +1212,7 @@ ol {
   }
 
   .contato-valor,
-  .pkz .contato-valor {
+  .contato-grid .contato-valor {
     font-size: 18px;
   }
 
@@ -1393,8 +1235,8 @@ ol {
 
 /* =====================================================================
    5. AGENDAMENTO
-   Seção #agendamento de one-to-one/index.html e pkz/index.html
-   Dias e horários são inputs radio criados pelo js/agendamento.js.
+   Componente Agendamento.jsx
+   Dias e horários são inputs radio criados pelo map no Agendamento.jsx.
    O item marcado fica azul com o seletor :checked + combinador "+"
    (input:checked + span). O JS também troca o horário no painel da
    direita e mostra as mensagens (5.7).
@@ -1676,133 +1518,9 @@ ol {
   }
 }
 
-
-/* ----- 5.6 Agendamento Playmakerz ----- */
-/* Versão mais compacta: título colado no texto, legenda no meio da linha
-   "SEG, 22 DE SETEMBRO", caixas menores e números em fonte sem serifa. */
-.pkz .agenda-titulo {
-  margin-bottom: 16px;
-}
-
-.pkz .agenda-texto {
-  max-width: none;
-  margin-bottom: 32px;
-}
-
-.pkz .dias {
-  margin-bottom: 36px;
-}
-
-.pkz .dia span {
-  height: 92px;
-  font-family: var(--fonte-texto);
-  color: #a8a8d0;
-  border-color: #2a2a6a;
-}
-
-.pkz .dia strong {
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 1.1;
-}
-
-.pkz .dia-semana {
-  font-weight: 400;
-  font-size: 13px;
-}
-
-.pkz .agenda-subtitulo {
-  margin-bottom: 16px;
-  font-family: var(--fonte-texto);
-  font-weight: 700;
-}
-
 /* Legenda (Livre / Ocupado) dentro da linha do subtítulo */
-.pkz .agenda-subtitulo .legenda {
-  margin-top: 0;
-  gap: 34px;
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: none;
-  color: var(--cor-texto-suave);
-}
-
-.pkz .legenda-ocupado {
-  background-color: #1a1a4a;
-}
-
-.pkz .horarios {
-  gap: 12px 16px;
-}
-
-.pkz .horario span {
-  height: 52px;
-  font-family: var(--fonte-texto);
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.pkz .horario-ocupado span {
-  background-color: #07073a;
-  border-color: #07073a;
-  color: #3c3c78;
-}
 
 /* Painel de confirmação */
-.pkz .confirmar {
-  padding: 36px 40px 28px;
-  background-color: var(--cor-superficie);
-  border-color: #2a2a6a;
-}
-
-.pkz .confirmar-rotulo {
-  font-family: var(--fonte-texto);
-  font-weight: 400;
-  font-size: 15px;
-}
-
-.pkz .confirmar-titulo {
-  font-family: var(--fonte-texto);
-  font-weight: 700;
-  font-size: 38px;
-  margin-bottom: 24px;
-}
-
-.pkz .confirmar-fechar {
-  top: 28px;
-  right: 32px;
-  width: 32px;
-  height: 32px;
-  border-color: #3a3a7a;
-}
-
-.pkz .confirmar-form {
-  gap: 12px;
-}
-
-.pkz .confirmar-form .campo {
-  height: 60px;
-  background-color: var(--cor-superficie);
-  border-color: #2a2a6a;
-}
-
-/* Botão ENVIAR dourado, mais estreito e centralizado */
-.pkz .btn-enviar {
-  align-self: center;
-  width: 260px;
-  margin-top: 16px;
-  font-family: var(--fonte-condensada);
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 0.3em;
-}
-
-@media (max-width: 767px) {
-  .pkz .agenda-subtitulo {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-}
 
 /* ----- 5.7 Estados controlados pelo JavaScript ----- */
 /* Navegação por teclado: o radio é invisível (opacity: 0),
@@ -1846,10 +1564,10 @@ ol {
 
 /* =====================================================================
    6. GALERIA
-   Seção #galeria de one-to-one/index.html e pkz/index.html
+   Componente Galeria.jsx
 ===================================================================== */
 
-/* ----- 6.1 Galeria geral (slider do js/galeria.js) ----- */
+/* ----- 6.1 Galeria geral (slider do Galeria.jsx) ----- */
 
 /* Foto à esquerda | contador, legenda e controles à direita */
 .galeria {
@@ -1990,21 +1708,11 @@ ol {
     }
 }
 
-/* ----- 6.2 Galeria Play Makerz -----
-   Mesmas classes; as cores vêm das variáveis do tema .pkz.
-   Legenda mais leve, como os outros títulos da PKZ.
-*/
-
-.pkz .galeria-legenda {
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
 
 /* =====================================================================
    HUB
-   Arquivo: index.html (pasta principal)
-   Visual próprio do Hub: creme + lilás, fonte Barlow Condensed.
+   Página Hub.jsx e componentes da pasta componentes/hub
+   Visual próprio do Hub: creme + lilás (fontes iguais às das outras páginas).
    ===================================================================== */
 
 /* ----- 7.1 Variáveis só do Hub ----- */
@@ -2064,7 +1772,7 @@ ol {
 }
 
 /* ----- 7.2 Header (nav) do Hub ----- */
-/* Header fixo no topo (sticky), igual ao da PKZ e da One to One:
+/* Header fixo no topo (sticky):
    rola junto até encostar no topo e fica preso ali. */
 .hub-cabecalho {
     position: sticky;
@@ -2238,7 +1946,7 @@ ol {
     color: var(--hub-sobre-lilas);
 }
 
-/* Controles do slider (setas e tracinhos funcionam com o js/hub.js) */
+/* Controles do slider (setas e tracinhos do HubHero.jsx) */
 .hub-slider {
     position: absolute;
     right: var(--hub-margem); /* alinhado com a borda direita do conteúdo */
@@ -2295,8 +2003,8 @@ ol {
     outline-offset: 3px;
 }
 
-/* Troca da foto do hero: o js/hub.js põe a classe "trocando" (foto some),
-troca o src e tira a classe (foto nova aparece) */
+/* Troca da foto do hero: o HubHero.jsx põe a classe "trocando" (foto some),
+troca a foto e tira a classe (foto nova aparece) */
 .hub-hero-foto img {
     transition: opacity 0.3s;
 }
@@ -2790,4 +2498,88 @@ troca o src e tira a classe (foto nova aparece) */
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cor-texto-apagado);
+}
+
+
+/* =====================================================================
+   11. ANIMAÇÕES
+   Só opacity e transform, que o navegador anima sem recalcular o layout.
+   Quem desativou animações no sistema não vê nenhuma (11.4).
+   ===================================================================== */
+
+/* ----- 11.1 Menu do celular abrindo ----- */
+@keyframes menu-abrir {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----- 11.2 Entrada do hero ao abrir a página ----- */
+/* Os itens aparecem subindo, um depois do outro (animation-delay).
+   fill-mode "both": antes de começar, o item já fica no estado "from"
+   (invisível), então não pisca na tela antes da animação. */
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-hero > header > *,
+.home-foto,
+.hub-hero-conteudo > * {
+  animation: surgir 0.6s ease-out both;
+}
+
+.home-hero > header > :nth-child(2),
+.hub-hero-conteudo > :nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.home-hero > header > :nth-child(3),
+.hub-hero-conteudo > :nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.home-hero > header > :nth-child(4),
+.hub-hero-conteudo > :nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.home-foto {
+  animation-delay: 0.15s;
+}
+
+/* ----- 11.3 Seções surgindo ao rolar a página ----- */
+/* animation-timeline: view() liga a animação à rolagem: ela acontece
+   enquanto a seção entra na tela. Navegador sem esse recurso ignora o
+   bloco inteiro (@supports) e mostra as seções normalmente. */
+@supports (animation-timeline: view()) {
+  .pagina:not(#inicio) > * {
+    animation: surgir linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* ----- 11.4 Acessibilidade: movimento reduzido ----- */
+/* Pessoas com sensibilidade a movimento ativam "reduzir movimento" no
+   sistema. Para elas, nada se mexe: animações e transições somem. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
