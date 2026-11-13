@@ -1,6 +1,7 @@
 import LinkAncora from "./LinkAncora";
 import equipePkz from "../assets/pkz/pkz-equipe.webp";
 import equipeOto from "../assets/oto/oto-equipe.webp";
+import equipeFisio from "../assets/fisio/fisio-equipe.webp";
 
 const dados = {
   pkz: {
@@ -36,8 +37,8 @@ const dados = {
       "One to One, para a volta aos treinos ser segura.",
   ],
   semComparar: true, // Não mostra o link "Comparar os dois programas".
-  foto: null, // Ainda sem foto: aparece a caixa cinza.
-  alt: "",
+  foto: equipeFisio,
+  alt: "Equipe de fisioterapeutas na área de reabilitação",
 },
 };
 

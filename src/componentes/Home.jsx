@@ -2,6 +2,7 @@ import LinkAncora from "./LinkAncora";
 
 import heroPkz from "../assets/pkz/pkz-hero.webp";
 import heroOto from "../assets/oto/oto-hero.webp";
+import heroFisio from "../assets/fisio/fisio-hero.webp";
 
 const dados = {
   pkz: {
@@ -33,10 +34,8 @@ const dados = {
   // A Fisioterapia não tem agendamento: o botão leva ao Contate-nos.
   secaoBotao: "contato",
 
-  // Ainda sem foto: aparece a caixa cinza.
-  // Troque pelo import da foto quando chegar.
-  foto: null,
-  alt: "",
+  foto: heroFisio,
+  alt: "Fisioterapeuta tratando o joelho de um atleta na maca de atendimento",
 },
 };
 

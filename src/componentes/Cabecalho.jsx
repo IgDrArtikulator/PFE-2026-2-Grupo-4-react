@@ -13,6 +13,7 @@ const links = [
   { texto: "Início", pagina: "/" },
   { texto: "Playmakerz", pagina: "/pkz" },
   { texto: "One to One", pagina: "/one-to-one" },
+  { texto: "Fisioterapia", pagina: "/fisioterapia" },
 ];
 
 // Logo de cada página. O Hub não tem logo no header: só os links e o tema
@@ -21,6 +22,7 @@ const logos = {
   hub: [],
   pkz: [{ src: logoPkz, alt: "Playmakerz", largura: 1531, altura: 354 }],
   oto: [{ src: logoOto, alt: "One to One Studio", largura: 1259, altura: 423 }],
+  fisio: [], // Fisioterapia ainda não tem logo: header só com links e tema
 };
 
 // Header igual nas 3 páginas. Prop: marca ("hub", "pkz" ou "oto").
