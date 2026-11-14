@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fundo escuro do site (#0b0b0b) com cantos arredondados -->
+  <rect width="64" height="64" rx="14" fill="#0b0b0b"/>
+  <!-- Halter no azul do site (#8ed3e6): barra no meio e duas anilhas de cada lado -->
+  <g fill="#8ed3e6">
+    <rect x="20" y="29" width="24" height="6" rx="1.5"/>
+    <rect x="16" y="17" width="8" height="30" rx="2.5"/>
+    <rect x="40" y="17" width="8" height="30" rx="2.5"/>
+    <rect x="9" y="23" width="8" height="18" rx="2.5"/>
+    <rect x="47" y="23" width="8" height="18" rx="2.5"/>
+  </g>
+</svg>
