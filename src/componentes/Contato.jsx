@@ -46,35 +46,6 @@ const canaisOto = [
   },
 ];
 
-// Canais da Fisioterapia.
-// ATENÇÃO: número, Instagram e e-mail são provisórios. Trocar pelos dados
-// reais assim que o cliente passar.
-const canaisFisio = [
-  {
-    href: "https://wa.me/5521900000000",
-    classeIcone: "icone-whatsapp",
-    icone: "fa-brands fa-whatsapp",
-    rotulo: "WhatsApp",
-    valor: "(21) 90000-0000",
-    externo: true,
-  },
-  {
-    href: "https://www.instagram.com/",
-    classeIcone: "icone-instagram",
-    icone: "fa-brands fa-instagram",
-    rotulo: "Instagram",
-    valor: "@fisioterapia",
-    externo: true,
-  },
-  {
-    href: "mailto:fisio@exemplo.com",
-    classeIcone: "icone-email",
-    icone: "fa-regular fa-envelope",
-    rotulo: "E-mail",
-    valor: "fisio@exemplo.com",
-  },
-];
-
 // Lista de cards: o map cria um <CardContato /> para cada canal.
 // O spread {...canal} passa todos os campos do objeto como props.
 function ListaCanais({ canais, classe }) {
@@ -98,14 +69,25 @@ function Contato({ marca }) {
           <p className="eyebrow">Fisioterapia · Contato</p>
           <h2 className="titulo-pagina contato-titulo">Contate-nos</h2>
           <p className="texto-lead">
-            Agende sua avaliação pelo canal que preferir.
+            Agende sua avaliação pelo canal da sua idade.
             <br />
             Respondemos em horário comercial.
           </p>
         </header>
 
-        {/* 3 canais lado a lado (mesmo layout da Play Makerz) */}
-        <ListaCanais canais={canaisFisio} classe="contato-grid" />
+        {/* Duas colunas: adultos (canais do One to One) e jovens (canais da
+            Play Makerz). Reaproveita as mesmas listas das outras páginas. */}
+        <div className="duas-colunas">
+          <article className="contato-grupo">
+            <h3 className="contato-grupo-titulo">Adultos · One to One</h3>
+            <ListaCanais canais={canaisOto} classe="contato-lista" />
+          </article>
+
+          <article className="contato-grupo">
+            <h3 className="contato-grupo-titulo">Jovens · Play Makerz</h3>
+            <ListaCanais canais={canaisPkz} classe="contato-lista" />
+          </article>
+        </div>
       </section>
     );
   }

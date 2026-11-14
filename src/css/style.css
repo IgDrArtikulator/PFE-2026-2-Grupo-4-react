@@ -1156,7 +1156,7 @@ ol {
   text-align: center;
 }
 
-/* ----- 4.3 Contato com 3 cards em linha (PKZ e Fisioterapia) ----- */
+/* ----- 4.3 Contato com 3 cards em linha (PKZ) ----- */
 .contato-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1188,6 +1188,23 @@ ol {
   color: var(--cor-sobre-destaque);
 }
 
+/* ----- 4.4 Contato da Fisioterapia: adultos | jovens ----- */
+/* Cada coluna tem um título e a lista de canais da marca */
+.contato-grupo-titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+/* Meia coluna é mais estreita: valor menor e e-mail comprido quebra a linha */
+.contato-grupo .contato-valor {
+  font-size: 24px;
+  overflow-wrap: anywhere;
+}
+
 /* ----- Responsividade / Media Queries ----- */
 
 /* Tablets e celulares: um canal embaixo do outro */
@@ -1212,8 +1229,14 @@ ol {
   }
 
   .contato-valor,
-  .contato-grid .contato-valor {
+  .contato-grid .contato-valor,
+  .contato-grupo .contato-valor {
     font-size: 18px;
+  }
+
+  .contato-grupo-titulo {
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 
   .atendimento-card {
