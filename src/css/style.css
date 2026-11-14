@@ -1258,6 +1258,13 @@ ol {
 }
 
 /* ----- 5.1 Dias da semana ----- */
+/* .dias-slider envolve as setas (‹ ›) e a linha dos dias.
+   No computador as setas ficam escondidas e os 6 dias cabem na linha;
+   no celular (media query no fim da seção 5) as setas aparecem. */
+.dias-slider {
+  margin-bottom: 40px;
+}
+
 /* Os 6 dias numa linha só. Se não couberem (celular), a linha vira um
    slider: rola para o lado com o dedo e "encaixa" em cada dia (scroll-snap). */
 .dias {
@@ -1265,8 +1272,13 @@ ol {
   gap: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;        /* as setas rolam com animação (scrollBy no JS) */
   padding-bottom: 8px;            /* espaço para a barra de rolagem */
-  margin-bottom: 40px;
+}
+
+/* Setas do slider: só aparecem no celular */
+.dias-seta {
+  display: none;
 }
 
 /* label envolve o input (pareamento por encapsulamento) */
@@ -1500,9 +1512,61 @@ ol {
 }
 
 @media (max-width: 767px) {
-  /* Celular: dias menores; os que não cabem ficam no slider */
-  .dias {
+  /* Celular: setas dos lados e os dias no meio */
+  .dias-slider {
+    display: flex;
+    align-items: center;
     gap: 8px;
+  }
+
+  /* Dias menores; os que não cabem ficam no slider.
+     gap de 8px: o JS (rolarDias) soma esses 8px para andar um dia por clique.
+     A barra de rolagem some, porque agora as setas fazem esse papel. */
+  .dias {
+    flex: 1;
+    min-width: 0;                 /* deixa a linha encolher e rolar dentro do slider */
+    gap: 8px;
+    padding-bottom: 0;
+    scrollbar-width: none;        /* esconde a barra (Firefox e Chrome) */
+  }
+
+  .dias::-webkit-scrollbar {
+    display: none;                /* esconde a barra (Safari) */
+  }
+
+  /* Botão redondo com borda, no mesmo estilo do X do painel */
+  .dias-seta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;               /* a seta nunca é espremida pelos dias */
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--cor-linha-forte);
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--cor-texto);
+    font-size: 24px;
+    line-height: 1;
+    padding-bottom: 3px;          /* centraliza o ‹ › na vertical */
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, opacity 0.2s;
+  }
+
+  .dias-seta:hover:not(:disabled) {
+    border-color: var(--cor-azul);
+    color: var(--cor-azul);
+  }
+
+  .dias-seta:focus-visible {
+    outline: 2px solid var(--cor-azul);
+    outline-offset: 3px;
+  }
+
+  /* Seta apagada quando já está no começo/fim (disabled vem do JS) */
+  .dias-seta:disabled {
+    opacity: 0.3;
+    cursor: default;
   }
 
   .dia {

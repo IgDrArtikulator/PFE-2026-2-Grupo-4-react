@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
 import LinkAncora from "./LinkAncora";
 import {
   horas,
@@ -105,6 +105,41 @@ function Agendamento({ marca }) {
   const [horario, setHorario] = useState("");
   const [confirmada, setConfirmada] = useState(null); // última reserva feita
   const [mensagem, setMensagem] = useState({ texto: "", erro: false });
+
+  // Slider dos dias (celular): useRef guarda a <div class="dias"> para
+  // ler e mudar a rolagem; noInicio/noFim apagam a seta daquele lado
+  const trilhoDias = useRef(null);
+  const [noInicio, setNoInicio] = useState(true);
+  const [noFim, setNoFim] = useState(false);
+
+  function atualizarSetas() {
+    const trilho = trilhoDias.current;
+    setNoInicio(trilho.scrollLeft <= 1);
+    setNoFim(trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 1);
+  }
+
+  // Anda um dia para o lado (-1 = esquerda, 1 = direita)
+  function rolarDias(sentido) {
+    const trilho = trilhoDias.current;
+    const passo = trilho.firstElementChild.offsetWidth + 8; // largura do dia + gap
+    trilho.scrollBy({ left: sentido * passo });
+  }
+
+  // Ao abrir, se o dia escolhido estiver fora da tela, rola o slider até ele
+  // (só o slider, não a página)
+  useEffect(() => {
+    const trilho = trilhoDias.current;
+    const escolhido = trilho.querySelector("input:checked").parentElement;
+    const caixaTrilho = trilho.getBoundingClientRect();
+    const caixaDia = escolhido.getBoundingClientRect();
+    if (caixaDia.right > caixaTrilho.right) {
+      trilho.scrollTo({
+        left: caixaDia.left - caixaTrilho.left,
+        behavior: "instant", // sem animação ao abrir a página
+      });
+    }
+    atualizarSetas();
+  }, []);
 
   // Volta o painel para o formulário (depois de uma reserva)
   function voltarAoFormulario() {
@@ -218,32 +253,52 @@ function Agendamento({ marca }) {
         <div>
           <fieldset className="agenda-grupo">
             <legend className="label-oculta">Escolha o dia</legend>
-            <div className="dias">
-              {dias.map((d) => {
-                const data = paraData(d);
-                const mes = meses[data.getMonth()];
-                return (
-                  <label className="dia" key={d}>
-                    <input
-                      type="radio"
-                      name="dia"
-                      value={d}
-                      checked={d === dia}
-                      onChange={() => escolherDia(d)}
-                    />
-                    <span>
-                      <abbr
-                        className="dia-semana"
-                        title={diasLongos[data.getDay()]}
-                      >
-                        {diasCurtos[data.getDay()]}
-                      </abbr>
-                      <strong>{data.getDate()}</strong>
-                      <abbr title={mes}>{mes.slice(0, 3)}</abbr>
-                    </span>
-                  </label>
-                );
-              })}
+            <div className="dias-slider">
+              <button
+                className="dias-seta"
+                type="button"
+                aria-label="Dias anteriores"
+                disabled={noInicio}
+                onClick={() => rolarDias(-1)}
+              >
+                &lsaquo;
+              </button>
+              <div className="dias" ref={trilhoDias} onScroll={atualizarSetas}>
+                {dias.map((d) => {
+                  const data = paraData(d);
+                  const mes = meses[data.getMonth()];
+                  return (
+                    <label className="dia" key={d}>
+                      <input
+                        type="radio"
+                        name="dia"
+                        value={d}
+                        checked={d === dia}
+                        onChange={() => escolherDia(d)}
+                      />
+                      <span>
+                        <abbr
+                          className="dia-semana"
+                          title={diasLongos[data.getDay()]}
+                        >
+                          {diasCurtos[data.getDay()]}
+                        </abbr>
+                        <strong>{data.getDate()}</strong>
+                        <abbr title={mes}>{mes.slice(0, 3)}</abbr>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+              <button
+                className="dias-seta"
+                type="button"
+                aria-label="Próximos dias"
+                disabled={noFim}
+                onClick={() => rolarDias(1)}
+              >
+                &rsaquo;
+              </button>
             </div>
           </fieldset>
 
