@@ -121,7 +121,10 @@ function Agendamento({ marca }) {
   // Anda um dia para o lado (-1 = esquerda, 1 = direita)
   function rolarDias(sentido) {
     const trilho = trilhoDias.current;
-    const passo = trilho.firstElementChild.offsetWidth + 8; // largura do dia + gap
+    // largura do dia + gap. O gap é lido do CSS porque está em rem e muda
+    // junto com a escala do site (font-size do html)
+    const gap = parseFloat(getComputedStyle(trilho).columnGap) || 0;
+    const passo = trilho.firstElementChild.offsetWidth + gap;
     trilho.scrollBy({ left: sentido * passo });
   }
 
