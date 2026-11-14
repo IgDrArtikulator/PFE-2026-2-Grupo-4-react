@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fundo no azul da Playmakerz (#1f1f8f, o mesmo do botão PKZ no Hub) -->
+  <rect width="64" height="64" rx="14" fill="#1f1f8f"/>
+  <!-- Foguete do logo da Playmakerz, em branco. Os pontos são os do logo
+       (1531 x 354); o transform encolhe e centraliza o desenho no ícone. -->
+  <g fill="#ffffff" transform="translate(32 5.5) scale(0.15) translate(-353 0)">
+    <!-- Corpo e aletas, com a janela redonda vazada (evenodd) -->
+    <path fill-rule="evenodd" d="M353 0 C318 35 290 95 290 145 L300 192 C265 210 245 245 243 280 C262 265 285 252 305 246 L307 265 H399 L401 246 C421 252 444 265 463 280 C461 245 441 210 406 192 L416 145 C416 95 388 35 353 0 Z M321 98 a32 32 0 1 0 64 0 a32 32 0 1 0 -64 0 Z"/>
+    <!-- Três rastros de fogo (o do meio é mais comprido) -->
+    <rect x="310" y="280" width="20" height="50" rx="4"/>
+    <rect x="343" y="280" width="20" height="74" rx="4"/>
+    <rect x="376" y="280" width="20" height="50" rx="4"/>
+  </g>
+</svg>

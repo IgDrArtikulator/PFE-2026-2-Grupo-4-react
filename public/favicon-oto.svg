@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fundo escuro do site (#0b0b0b) com cantos arredondados -->
+  <rect width="64" height="64" rx="14" fill="#0b0b0b"/>
+  <!-- Etiqueta em seta do logo One to One, no azul do site (#8ed3e6) -->
+  <path d="M14 16 H44 L54 32 L44 48 H14 Q10 48 10 44 V20 Q10 16 14 16 Z" fill="#8ed3e6"/>
+  <!-- "TO" desenhado com formas (texto em SVG depende da fonte instalada) -->
+  <g fill="#0b0b0b">
+    <rect x="14" y="23" width="13" height="4.5"/>
+    <rect x="18.25" y="23" width="4.5" height="18"/>
+  </g>
+  <rect x="31.25" y="25.25" width="7.5" height="13.5" rx="1.5" fill="none" stroke="#0b0b0b" stroke-width="4.5"/>
+</svg>

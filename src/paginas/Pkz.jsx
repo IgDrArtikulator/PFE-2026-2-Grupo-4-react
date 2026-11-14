@@ -16,6 +16,9 @@ function Pkz() {
   return (
     <>
       <title>Playmakerz | Treino de alta performance</title>
+      {/* React 19: o <link> também vai sozinho para o <head>.
+          Favicon próprio da PKZ (foguete do logo) */}
+      <link rel="icon" type="image/svg+xml" href="/favicon-pkz.svg" />
 
       <Cabecalho marca="pkz" />
       <main>

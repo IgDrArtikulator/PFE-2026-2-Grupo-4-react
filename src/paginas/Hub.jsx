@@ -11,6 +11,9 @@ function Hub() {
     <div className="hub">
       {/* React 19: o <title> é levado sozinho para o <head> */}
       <title>PKZ · One to One | Treino de alta performance</title>
+      {/* O <link> também vai sozinho para o <head>.
+          Favicon padrão (halter), o mesmo da Fisioterapia */}
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
       {/* O mesmo header das páginas das marcas */}
       <Cabecalho marca="hub" />

@@ -9,6 +9,9 @@ function Fisioterapia() {
   return (
     <>
       <title>Fisioterapia | PKZ · One to One</title>
+      {/* React 19: o <link> também vai sozinho para o <head>.
+          Favicon padrão (halter), o mesmo do Hub */}
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
       <Cabecalho marca="fisio" />
       <main>

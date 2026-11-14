@@ -16,6 +16,9 @@ function OneToOne() {
   return (
     <>
       <title>One to One Studio | Treino individual</title>
+      {/* React 19: o <link> também vai sozinho para o <head>.
+          Favicon próprio do One to One ("TO" do logo) */}
+      <link rel="icon" type="image/svg+xml" href="/favicon-oto.svg" />
 
       <Cabecalho marca="oto" />
       <main>
