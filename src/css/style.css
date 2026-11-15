@@ -2139,9 +2139,12 @@ troca a foto e tira a classe (foto nova aparece) */
     border: 0;
 }
 
+/* 3 marcas lado a lado (PKZ, One to One e Fisioterapia), com espaço entre elas */
 .hub-marcas {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2.5rem;
+    row-gap: 3.5rem;   /* quando quebram em mais de uma linha (tablet e celular) */
 }
 
 /* Caixa da foto com borda tracejada (lugar da imagem) */
@@ -2181,10 +2184,26 @@ troca a foto e tira a classe (foto nova aparece) */
     color: var(--hub-sobre-ciano);
 }
 
+.selo-fisio {
+    background-color: var(--hub-claro);
+    color: #17151a;
+}
+
 .hub-marca-logo {
     height: 2rem;
     width: auto;
     margin: 1.625rem 0 0.875rem;
+}
+
+/* Nome escrito no lugar do logo (marca sem logo): mesma altura do logo.
+   ".hub-marca" na frente vale mais que a regra ".hub-marca p" */
+.hub-marca .hub-marca-nome {
+    margin: 1.625rem 0 0.875rem;
+    font-family: var(--hub-titulo);
+    font-size: 2rem;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--hub-creme);
 }
 
 .hub-marca p {
@@ -2202,6 +2221,20 @@ troca a foto e tira a classe (foto nova aparece) */
 .hub-btn-one {
     background-color: var(--hub-ciano);
     color: var(--hub-sobre-ciano);
+}
+
+/* Tablet: 3 cards não cabem lado a lado; ficam 2 por linha */
+@media (max-width: 1100px) {
+    .hub-marcas {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Fisioterapia: botão branco com o texto preto */
+.hub-btn-fisio {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #111111;
 }
 
 /* ----- 7.5 Fotos (Veja a gente em ação) ----- */
@@ -2497,6 +2530,10 @@ troca a foto e tira a classe (foto nova aparece) */
 
 /* O hero e as fotos do Hub têm texto e selos em cima da foto: eles continuam
    com as cores do tema escuro nos dois temas, senão o texto escuro some na foto */
+:root[data-theme="light"] .hub-btn-fisio {
+  border-color: #111111;
+}
+
 :root[data-theme="light"] .hub-hero,
 :root[data-theme="light"] .hub-foto {
   --hub-creme: #efe9e1;

@@ -2,17 +2,18 @@ import CardMarca from "./CardMarca";
 
 import fotoPkz from "../../assets/hub/hub-pkz.webp";
 import fotoOto from "../../assets/hub/hub-oto.webp";
+import fotoFisio from "../../assets/hub/hub-fisio.webp";
 import logoPkz from "../../assets/pkz/logo-playmakerz.png";
 import logoOto from "../../assets/oto/logo-one-to-one.png";
 
-// Seção "Escolha sua jornada": as duas marcas
+// Seção "Escolha sua jornada": as três marcas
 function HubEscolha() {
   return (
     <section className="hub-secao hub-container" id="escolha">
       <header>
         <p className="hub-eyebrow">Escolha sua jornada</p>
         <h2 className="hub-subtitulo">
-          Duas marcas.<br />Um mesmo padrão de excelência.
+          Três marcas.<br />Um mesmo padrão de excelência.
         </h2>
         <hr className="hub-traco" />
       </header>
@@ -45,6 +46,20 @@ function HubEscolha() {
           botao="Acessar One to One"
           classeBotao="hub-btn-one"
           pagina="/one-to-one"
+        />
+        {/* Fisioterapia ainda não tem logo: o card mostra o nome escrito */}
+        <CardMarca
+          selo="Reabilitação"
+          classeSelo="selo-fisio"
+          foto={fotoFisio}
+          fotoLargura={1031}
+          fotoAltura={768}
+          alt="Fisioterapeuta tratando o joelho de um atleta na maca"
+          nome="Fisioterapia"
+          texto="Avaliação e tratamento individual para voltar a treinar sem dor."
+          botao="Acessar Fisioterapia"
+          classeBotao="hub-btn-fisio"
+          pagina="/fisioterapia"
         />
       </div>
     </section>
