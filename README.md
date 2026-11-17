@@ -1,5 +1,11 @@
 # PFE-2026-2-Grupo-4-react
 
+Integrantes: Arthur Alves, Matheus Borges, Guilherme Buttignol, Igor Santos, Lucas Cunha e Caio Santos.
+
+## Link Vercel
+
+https://pfe-2026-2-grupo-4-react-qyqb.vercel.app/
+
 ## Executar localmente
 
 ```bash
